@@ -4,7 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.afzaln.androidchartbenchmark.hellocharts.HcRtFifo3AxesFragment;
+import com.afzaln.androidchartbenchmark.androidplot.ApRtFifoFragment;
 import com.afzaln.androidchartbenchmark.scichart.SciRtFifoFragment;
 
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFragment(Fragment fragment) {
         if (fragment == null) {
-            fragment = new HcRtFifo3AxesFragment();
+            fragment = new ApRtFifoFragment();
             getFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();

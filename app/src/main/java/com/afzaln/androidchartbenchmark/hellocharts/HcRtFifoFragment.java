@@ -22,6 +22,6 @@ public class HcRtFifoFragment extends HcFragment {
 
     @Override
     protected int getLayout() {
-        return R.layout.hellocharts_fifo_fragment;
+        return R.layout.hc_fragment;
     }
 }

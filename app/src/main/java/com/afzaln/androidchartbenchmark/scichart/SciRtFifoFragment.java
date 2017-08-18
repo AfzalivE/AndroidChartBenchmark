@@ -17,6 +17,6 @@ public class SciRtFifoFragment extends SciFragment {
 
     @Override
     protected int getLayout() {
-        return R.layout.scichart_fifo_fragment;
+        return R.layout.sci_fragment;
     }
 }

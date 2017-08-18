@@ -40,8 +40,8 @@ public abstract class MpFragment extends BaseChartFragment {
 
         YAxis leftAxis = lineChartView.getAxisLeft();
         leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setAxisMaxValue(1f);
-        leftAxis.setAxisMinValue(0f);
+        leftAxis.setAxisMaximum(1f);
+        leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);
 
         YAxis rightAxis = lineChartView.getAxisRight();

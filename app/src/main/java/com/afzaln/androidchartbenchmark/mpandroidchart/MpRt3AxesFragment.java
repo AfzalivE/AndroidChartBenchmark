@@ -16,6 +16,6 @@ public class MpRt3AxesFragment extends MpFragment {
 
     @Override
     protected int getLayout() {
-        return R.layout.mpandroid_fifo_fragment;
+        return R.layout.mp_fragment;
     }
 }

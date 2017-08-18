@@ -34,7 +34,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // AndroidPlot https://github.com/halfhp/androidplot
-    compile "com.androidplot:androidplot-core:1.2.1"
+    compile "com.androidplot:androidplot-core:1.5.1"
 
     // GraphView
     compile "com.jjoe64:graphview:4.2.1"
@@ -49,14 +49,15 @@ dependencies {
 
 
     // SciChart
-    compile 'com.scichart:charting-release:1.1.1@aar'
-    compile 'com.scichart:core-release:1.1.1@aar'
-    compile 'com.scichart:drawing-release:1.1.1@aar'
-    compile 'com.scichart:data-release:1.1.1@aar'
+    compile (name:'charting-release', ext:'aar')
+    compile (name:'drawing-release', ext:'aar')
+    compile (name:'data-release', ext:'aar')
+    compile (name:'core-release', ext:'aar')
+    compile (name:'extensions-release', ext:'aar')
 
     // TeeChart https://www.steema.com/product/java_android#overview
     compile files('../libs/TeeChart.Android.jar')
 
     // WilliamChart https://github.com/diogobernardino/WilliamChart
-    compile "com.diogobernardino:williamchart:2.2"
+    compile "com.diogobernardino:williamchart:2.5.0"
 }

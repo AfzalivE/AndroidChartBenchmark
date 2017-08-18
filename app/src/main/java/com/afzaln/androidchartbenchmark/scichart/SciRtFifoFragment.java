@@ -7,7 +7,6 @@ import com.afzaln.androidchartbenchmark.R;
  */
 
 public class SciRtFifoFragment extends SciFragment {
-
     private static final int NUM_SETS = 1;
 
     @Override

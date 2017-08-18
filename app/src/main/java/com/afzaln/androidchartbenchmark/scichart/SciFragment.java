@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.afzaln.androidchartbenchmark.PointsRunnable;
 import com.afzaln.androidchartbenchmark.R;
-import com.afzaln.androidchartbenchmark.scichart.utils.SciChartBuilder;
 import com.afzaln.androidchartbenchmark.ui.BaseChartFragment;
 import com.scichart.charting.model.dataSeries.IXyDataSeries;
 import com.scichart.charting.visuals.SciChartSurface;
@@ -15,6 +14,7 @@ import com.scichart.charting.visuals.axes.IAxis;
 import com.scichart.charting.visuals.axes.NumericAxis;
 import com.scichart.charting.visuals.renderableSeries.IRenderableSeries;
 import com.scichart.core.framework.UpdateSuspender;
+import com.scichart.extensions.builders.SciChartBuilder;
 
 import butterknife.BindView;
 import lecho.lib.hellocharts.util.ChartUtils;

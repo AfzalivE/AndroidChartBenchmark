@@ -13,10 +13,9 @@ import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.StepMode;
 import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import lecho.lib.hellocharts.util.ChartUtils;
@@ -31,6 +30,7 @@ public abstract class ApFragment extends BaseChartFragment {
     private Redrawer redrawer;
     @BindView(R.id.chart)
     XYPlot lineChartView;
+    private ArrayList<SimpleXYSeries> seriesList;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public abstract class ApFragment extends BaseChartFragment {
 
     @Override
     protected void setupChart() {
+        seriesList = new ArrayList<>();
         lineChartView.getGraph().getBackgroundPaint().setColor(Color.WHITE);
         lineChartView.getGraph().getGridBackgroundPaint().setColor(Color.WHITE);
         lineChartView.getGraph().getDomainGridLinePaint().setColor(Color.WHITE);
@@ -88,13 +89,13 @@ public abstract class ApFragment extends BaseChartFragment {
         series.useImplicitXVals();
         LineAndPointFormatter formatter = new LineAndPointFormatter(color, null, null, null);
         lineChartView.addSeries(series, formatter);
+        seriesList.add(series);
     }
 
     @Override
     protected void updateChart(float[] points) {
-        List<XYSeries> seriesList = lineChartView.getSeriesRegistry().getSeriesList();
         for (int i = 0, iSize = getSetSize(); i < iSize; i++) {
-            SimpleXYSeries series = (SimpleXYSeries) seriesList.get(i);
+            SimpleXYSeries series = seriesList.get(i);
             if (isFifo() && series.size() > MAX_SIZE) {
                 series.removeFirst(); // removing instead of moving the frame, kinda cheats with memory
             }

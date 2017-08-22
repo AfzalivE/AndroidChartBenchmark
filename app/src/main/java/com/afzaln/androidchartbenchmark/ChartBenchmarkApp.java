@@ -32,12 +32,6 @@ public class ChartBenchmarkApp extends Application {
 
         stats = new ArrayList<>();
 
-        callback = new FrameDataCallback() {
-            @Override
-            public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
-                //collect your stats here
-            }
-        };
         TinyDancer.create()
                 .addFrameDataCallback(callback)
                 .show(this);

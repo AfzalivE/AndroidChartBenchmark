@@ -58,6 +58,7 @@ public abstract class MpFragment extends BaseChartFragment {
     @Override
     protected void setupDataset(int color) {
         LineDataSet lineDataSet = new LineDataSet(null, "Dynamic Data");
+        lineDataSet.addEntry(new Entry(0, 0));
         lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         lineDataSet.setColor(color);
         lineDataSet.setDrawCircles(false);

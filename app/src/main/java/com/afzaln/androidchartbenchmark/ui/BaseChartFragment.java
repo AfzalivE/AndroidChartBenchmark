@@ -6,10 +6,6 @@ import android.view.View;
 import com.afzaln.androidchartbenchmark.DataSimulator;
 import com.afzaln.androidchartbenchmark.PointsRunnable;
 
-import java.util.Arrays;
-
-import timber.log.Timber;
-
 /**
  * Created by afzal on 2016-10-13.
  */
@@ -18,7 +14,7 @@ public abstract class BaseChartFragment extends BaseFragment {
     protected PointsRunnable updateChartRunnable = new PointsRunnable() {
         @Override
         public void run(float[] points) {
-            Timber.d(String.format("Points: %s", Arrays.toString(points)));
+//            Timber.d(String.format("Points: %s", Arrays.toString(points)));
             updateChart(points);
 
         }

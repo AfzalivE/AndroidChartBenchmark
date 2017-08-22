@@ -1,6 +1,13 @@
 package com.afzaln.androidchartbenchmark;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.codemonkeylabs.fpslibrary.FrameDataCallback;
+import com.codemonkeylabs.fpslibrary.TinyDancer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -9,6 +16,8 @@ import timber.log.Timber;
  */
 
 public class ChartBenchmarkApp extends Application {
+
+    private List<StatHolder> stats;
 
     @Override
     public void onCreate() {
@@ -20,13 +29,39 @@ public class ChartBenchmarkApp extends Application {
 
         //you can add a callback to get frame times and the calculated
         //number of dropped frames within that window
-//        TinyDancer.create()
-//                .addFrameDataCallback(new FrameDataCallback() {
-//                    @Override
-//                    public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
-//                        //collect your stats here
-//                    }
-//                })
-//                .show(this);
+
+        stats = new ArrayList<>();
+
+        callback = new FrameDataCallback() {
+            @Override
+            public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
+                //collect your stats here
+            }
+        };
+        TinyDancer.create()
+                .addFrameDataCallback(callback)
+                .show(this);
+    }
+
+    private FrameDataCallback callback = new FrameDataCallback() {
+        @Override
+        public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
+            if (!stats.isEmpty()) {
+                StatHolder currentStats = stats.get(stats.size() - 1);
+                currentStats.add(currentFrameNS, droppedFrames);
+            }
+        }
+    };
+
+    public static ChartBenchmarkApp get(Context context) {
+        return (ChartBenchmarkApp) context.getApplicationContext();
+    }
+
+    public void addStatHolder(String name) {
+        stats.add(new StatHolder(name));
+    }
+
+    public void finishStats() {
+        Timber.d("Final stats: " + stats);
     }
 }

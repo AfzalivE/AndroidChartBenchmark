@@ -1,6 +1,7 @@
 package com.afzaln.androidchartbenchmark;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -32,54 +33,54 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new ApRtFragment());
-        fragmentList.add(new ApRt3AxesFragment());
-        fragmentList.add(new ApRtFifoFragment());
-        fragmentList.add(new ApRtFifo3AxesFragment());
-//        fragmentList.add(new Ap5GraphsFifoFragment());
+        List<String> fragmentList = new ArrayList<>();
+        fragmentList.add(ApRtFragment.class.getName());
+        fragmentList.add(ApRt3AxesFragment.class.getName());
+        fragmentList.add(ApRtFifoFragment.class.getName());
+        fragmentList.add(ApRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Ap5GraphsFifoFragment.class.getName());
 
-//        fragmentList.add(new GvRtFragment());
-//        fragmentList.add(new GvRt3AxesFragment());
-//        fragmentList.add(new GvRtFifoFragment());
-//        fragmentList.add(new GvRtFifo3AxesFragment());
-//        fragmentList.add(new Gv5GraphsFifoFragment());
+//        fragmentList.add(GvRtFragment.class.getName());
+//        fragmentList.add(GvRt3AxesFragment.class.getName());
+//        fragmentList.add(GvRtFifoFragment.class.getName());
+//        fragmentList.add(GvRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Gv5GraphsFifoFragment.class.getName());
 
-        fragmentList.add(new HcRtFragment());
-        fragmentList.add(new HcRt3AxesFragment());
-        fragmentList.add(new HcRtFifoFragment());
-        fragmentList.add(new HcRtFifo3AxesFragment());
-//        fragmentList.add(new Hc5GraphsFifoFragment());
+        fragmentList.add(HcRtFragment.class.getName());
+        fragmentList.add(HcRt3AxesFragment.class.getName());
+        fragmentList.add(HcRtFifoFragment.class.getName());
+        fragmentList.add(HcRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Hc5GraphsFifoFragment.class.getName());
 
-        fragmentList.add(new MpRtFragment());
-        fragmentList.add(new MpRt3AxesFragment());
-        fragmentList.add(new MpRtFifoFragment());
-        fragmentList.add(new MpRtFifo3AxesFragment());
-//        fragmentList.add(new Mp5GraphsFifoFragment());
+        fragmentList.add(MpRtFragment.class.getName());
+        fragmentList.add(MpRt3AxesFragment.class.getName());
+        fragmentList.add(MpRtFifoFragment.class.getName());
+        fragmentList.add(MpRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Mp5GraphsFifoFragment.class.getName());
 
-        fragmentList.add(new SciRtFragment());
-        fragmentList.add(new SciRt3AxesFragment());
-        fragmentList.add(new SciRtFifoFragment());
-        fragmentList.add(new SciRtFifo3AxesFragment());
-//        fragmentList.add(new Sci5GraphsFifoFragment());
+        fragmentList.add(SciRtFragment.class.getName());
+        fragmentList.add(SciRt3AxesFragment.class.getName());
+        fragmentList.add(SciRtFifoFragment.class.getName());
+        fragmentList.add(SciRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Sci5GraphsFifoFragment.class.getName());
 
-//        fragmentList.add(new TcRtFragment());
-//        fragmentList.add(new TcRt3AxesFragment());
-//        fragmentList.add(new TcRtFifoFragment());
-//        fragmentList.add(new TcRtFifo3AxesFragment());
-//        fragmentList.add(new Tc5GraphsFifoFragment());
+//        fragmentList.add(TcRtFragment.class.getName());
+//        fragmentList.add(TcRt3AxesFragment.class.getName());
+//        fragmentList.add(TcRtFifoFragment.class.getName());
+//        fragmentList.add(TcRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Tc5GraphsFifoFragment.class.getName());
 
-//        fragmentList.add(new WcRtFragment());
-//        fragmentList.add(new WcRt3AxesFragment());
-//        fragmentList.add(new WcRtFifoFragment());
-//        fragmentList.add(new WcRtFifo3AxesFragment());
-//        fragmentList.add(new Wc5GraphsFifoFragment());
+//        fragmentList.add(WcRtFragment.class.getName());
+//        fragmentList.add(WcRt3AxesFragment.class.getName());
+//        fragmentList.add(WcRtFifoFragment.class.getName());
+//        fragmentList.add(WcRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Wc5GraphsFifoFragment.class.getName());
 
         runFragmentList(fragmentList);
 //        showFragment(fragmentList.get(0));
     }
 
-    private void runFragmentList(final List<Fragment> fragmentList) {
+    private void runFragmentList(final List<String> fragmentList) {
         final int iSize = fragmentList.size();
         for (int i = 0; i <= iSize; i++) {
             final int finalI = i;
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
                         hideFragment();
                         return;
                     }
-                    Fragment fragment = fragmentList.get(finalI);
-                    showFragment(fragment);
-                    ChartBenchmarkApp.get(MainActivity.this).addStatHolder(fragment.getClass().getSimpleName());
+                    String fragmentName = fragmentList.get(finalI);
+                    showFragment(fragmentName);
+                    ChartBenchmarkApp.get(MainActivity.this).addStatHolder(fragmentName);
                 }
             }, 10000 * (i));
         }
@@ -105,9 +106,23 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    private void showFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction()
+    Fragment lastFragment;
+
+    private void showFragment(String fragmentName) {
+        Fragment fragment = Fragment.instantiate(this, fragmentName);
+        FragmentManager fragmentManager = getFragmentManager();
+        if (lastFragment != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .remove(lastFragment)
+                    .commit();
+        }
+        lastFragment = null;
+        fragmentManager
+                .beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
+
+        lastFragment = fragment;
     }
 }

@@ -1,9 +1,16 @@
 package com.afzaln.androidchartbenchmark;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.afzaln.androidchartbenchmark.androidplot.ApRt3AxesFragment;
 import com.afzaln.androidchartbenchmark.androidplot.ApRtFifo3AxesFragment;
@@ -28,10 +35,40 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    private Handler handler;
+    private String EXTERNAL_STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(EXTERNAL_STORAGE_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{EXTERNAL_STORAGE_PERMISSION}, PERMISSION_REQUEST_CODE);
+                return;
+            }
+        }
+
+        initiateBenchmark();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_REQUEST_CODE &&
+                permissions[0].equals(EXTERNAL_STORAGE_PERMISSION)) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                initiateBenchmark();
+            } else {
+                Snackbar.make(findViewById(android.R.id.content), "Need permission to store results", Snackbar.LENGTH_INDEFINITE).show();
+            }
+        }
+    }
+
+    private void initiateBenchmark() {
+        handler = new Handler();
 
         List<String> fragmentList = new ArrayList<>();
         fragmentList.add(ApRtFragment.class.getName());
@@ -80,11 +117,19 @@ public class MainActivity extends AppCompatActivity {
 //        showFragment(fragmentList.get(0));
     }
 
+    @Override
+    protected void onDestroy() {
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        super.onDestroy();
+    }
+
     private void runFragmentList(final List<String> fragmentList) {
         final int iSize = fragmentList.size();
         for (int i = 0; i <= iSize; i++) {
             final int finalI = i;
-            getWindow().getDecorView().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (finalI == iSize) {
@@ -94,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     String fragmentName = fragmentList.get(finalI);
                     showFragment(fragmentName);
-                    ChartBenchmarkApp.get(MainActivity.this).addStatHolder(fragmentName);
+                    String[] nameSplit = fragmentName.split("\\.");
+                    ChartBenchmarkApp.get(MainActivity.this).addStatHolder(nameSplit[nameSplit.length - 1]);
                 }
             }, 10000 * (i));
         }

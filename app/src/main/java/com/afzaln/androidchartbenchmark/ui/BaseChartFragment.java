@@ -31,11 +31,13 @@ public abstract class BaseChartFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        DataSimulator dataSimulator = new DataSimulator(dataListener);
         setupChart();
         setupAxes();
         setupDatasets();
+    }
 
+    public void startSimulation(int rate) {
+        DataSimulator dataSimulator = new DataSimulator(dataListener, rate);
         dataSimulator.start();
     }
 

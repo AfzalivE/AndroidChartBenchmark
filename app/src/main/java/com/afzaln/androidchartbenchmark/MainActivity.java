@@ -32,6 +32,7 @@ import com.afzaln.androidchartbenchmark.scichart.SciRt3AxesFragment;
 import com.afzaln.androidchartbenchmark.scichart.SciRtFifo3AxesFragment;
 import com.afzaln.androidchartbenchmark.scichart.SciRtFifoFragment;
 import com.afzaln.androidchartbenchmark.scichart.SciRtFragment;
+import com.afzaln.androidchartbenchmark.ui.BaseChartFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
+    public static final int RATE = 100; // Hz
     private Handler handler;
     private String EXTERNAL_STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        initiateBenchmark();
+        initiateBenchmark(RATE);
     }
 
     @Override
@@ -64,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == PERMISSION_REQUEST_CODE &&
                 permissions[0].equals(EXTERNAL_STORAGE_PERMISSION)) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                initiateBenchmark();
+                initiateBenchmark(RATE);
             } else {
                 Snackbar.make(findViewById(android.R.id.content), "Need permission to store results", Snackbar.LENGTH_INDEFINITE).show();
             }
         }
     }
 
-    private void initiateBenchmark() {
+    private void initiateBenchmark(int rate) {
         handler = new Handler();
 
         List<String> fragmentList = new ArrayList<>();
@@ -117,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 ////        fragmentList.add(WcRtFifo3AxesFragment.class.getName());
 ////        fragmentList.add(Wc5GraphsFifoFragment.class.getName());
 
-        runFragmentList(fragmentList);
 //        showFragment(fragmentList.get(0));
+        runFragmentList(fragmentList, rate);
     }
 
     @Override
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void runFragmentList(final List<String> fragmentList) {
+    private void runFragmentList(final List<String> fragmentList, final int rate) {
         final int iSize = fragmentList.size();
         for (int i = 0; i <= iSize; i++) {
             final int finalI = i;
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     String fragmentName = fragmentList.get(finalI);
-                    showFragment(fragmentName);
+                    showFragment(fragmentName, rate);
                     String[] nameSplit = fragmentName.split("\\.");
                     ChartBenchmarkApp.get(MainActivity.this).addStatHolder(nameSplit[nameSplit.length - 1]);
                 }
@@ -158,8 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
     Fragment lastFragment;
 
-    private void showFragment(String fragmentName) {
-        Fragment fragment = Fragment.instantiate(this, fragmentName);
+    private void showFragment(String fragmentName, int rate) {
+        BaseChartFragment fragment = (BaseChartFragment) Fragment.instantiate(this, fragmentName);
+        fragment.startSimulation(rate);
         FragmentManager fragmentManager = getFragmentManager();
         if (lastFragment != null) {
             fragmentManager

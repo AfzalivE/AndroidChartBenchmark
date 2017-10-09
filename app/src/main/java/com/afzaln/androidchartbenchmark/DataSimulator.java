@@ -12,9 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class DataSimulator {
 
     private static final Random RANDOM = new Random();
+    private static final int DEFAULT_PERIOD = 20000000; // 2e7 ns = 50Hz
     private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
     private final DataListener dataListener;
+    private int period = DEFAULT_PERIOD;
+
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -25,12 +28,16 @@ public class DataSimulator {
         }
     };
 
-    public DataSimulator(DataListener dataListener) {
+    /**
+     * Rate in Hz, period in nanoseconds
+     */
+    public DataSimulator(DataListener dataListener, int rate) {
         this.dataListener = dataListener;
+        this.period = 1000000000 / rate;
     }
 
     public void start() {
-        executorService.scheduleAtFixedRate(runnable, 0, 20, TimeUnit.MILLISECONDS);
+        executorService.scheduleAtFixedRate(runnable, 0, period, TimeUnit.NANOSECONDS);
     }
 
     public void stop() {

@@ -4,31 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.androidplot.xy.XYPlot
+    <com.scichart.charting.visuals.SciChartSurface
         android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.androidplot.xy.XYPlot
+    <com.scichart.charting.visuals.SciChartSurface
         android:id="@+id/chart2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.androidplot.xy.XYPlot
+    <com.scichart.charting.visuals.SciChartSurface
         android:id="@+id/chart3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.androidplot.xy.XYPlot
+    <com.scichart.charting.visuals.SciChartSurface
         android:id="@+id/chart4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.androidplot.xy.XYPlot
+    <com.scichart.charting.visuals.SciChartSurface
         android:id="@+id/chart5"
         android:layout_width="match_parent"
         android:layout_height="0dp"

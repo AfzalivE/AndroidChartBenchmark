@@ -21,4 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/chart4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/chart5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

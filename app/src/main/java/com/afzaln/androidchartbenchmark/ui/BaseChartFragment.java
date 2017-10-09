@@ -6,6 +6,8 @@ import android.view.View;
 import com.afzaln.androidchartbenchmark.DataSimulator;
 import com.afzaln.androidchartbenchmark.PointsRunnable;
 
+import timber.log.Timber;
+
 /**
  * Created by afzal on 2016-10-13.
  */
@@ -28,17 +30,24 @@ public abstract class BaseChartFragment extends BaseFragment {
         }
     };
 
+    private int rate;
+    private DataSimulator dataSimulator;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        dataSimulator = new DataSimulator(dataListener, rate);
+        Timber.d("Running at %d Hz", rate);
         setupChart();
         setupAxes();
         setupDatasets();
+
+        dataSimulator.start();
+
     }
 
-    public void startSimulation(int rate) {
-        DataSimulator dataSimulator = new DataSimulator(dataListener, rate);
-        dataSimulator.start();
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     protected abstract int getSetSize();

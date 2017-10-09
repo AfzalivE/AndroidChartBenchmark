@@ -21,4 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/chart4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/chart5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

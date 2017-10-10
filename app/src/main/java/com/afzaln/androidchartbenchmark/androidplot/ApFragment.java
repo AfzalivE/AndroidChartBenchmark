@@ -101,6 +101,7 @@ public abstract class ApFragment extends BaseChartFragment {
             }
 
             series.addLast(null, points[i]);
+            updateCurrentIndex(series.size() - 1);
         }
     }
 

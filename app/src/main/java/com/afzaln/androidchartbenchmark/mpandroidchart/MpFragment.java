@@ -84,6 +84,7 @@ public abstract class MpFragment extends BaseChartFragment {
             }
             lineChartView.notifyDataSetChanged();
             lineChartView.moveViewToX(data.getEntryCount() - 121);
+            updateCurrentIndex(data.getEntryCount() - 1);
         }
     }
 }

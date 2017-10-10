@@ -86,6 +86,7 @@ public abstract class ScFragment extends BaseChartFragment {
                 int xValue = mainSeries.getCount() > 0 ? mainSeries.getXValues().get(mainSeries.getCount() - 1) : 0;
                 xValue++;
                 mainSeries.append(xValue, points[i]);
+                updateCurrentIndex(xValue);
             }
         }
     };

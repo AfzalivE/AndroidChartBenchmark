@@ -12,7 +12,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.afzaln.androidchartbenchmark.scichart.Sc5GraphsFifoFragment;
+import com.afzaln.androidchartbenchmark.androidplot.ApRt3AxesFragment;
+import com.afzaln.androidchartbenchmark.androidplot.ApRtFragment;
 import com.afzaln.androidchartbenchmark.ui.BaseChartFragment;
 
 import java.util.ArrayList;
@@ -58,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         handler = new Handler();
 
         List<String> fragmentList = new ArrayList<>();
-//        fragmentList.add(ApRtFragment.class.getName());
-//        fragmentList.add(ApRt3AxesFragment.class.getName());
+        fragmentList.add(ApRtFragment.class.getName());
+        fragmentList.add(ApRt3AxesFragment.class.getName());
 //        fragmentList.add(ApRtFifoFragment.class.getName());
 //        fragmentList.add(ApRtFifo3AxesFragment.class.getName());
 //        fragmentList.add(Ap5GraphsFifoFragment.class.getName());
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentList.add(ScRt3AxesFragment.class.getName());
 //        fragmentList.add(ScRtFifoFragment.class.getName());
 //        fragmentList.add(ScRtFifo3AxesFragment.class.getName());
-        fragmentList.add(Sc5GraphsFifoFragment.class.getName());
+//        fragmentList.add(Sc5GraphsFifoFragment.class.getName());
 //
 //        fragmentList.add(TcRtFragment.class.getName());
 //        fragmentList.add(TcRt3AxesFragment.class.getName());
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         BaseChartFragment fragment = (BaseChartFragment) Fragment.instantiate(this, fragmentName);
         fragment.setRate(rate);
         FragmentManager fragmentManager = getFragmentManager();
+        // clean up the fragment
         if (lastFragment != null) {
             fragmentManager
                     .beginTransaction()

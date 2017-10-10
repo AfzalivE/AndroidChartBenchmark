@@ -87,6 +87,7 @@ public class Gv5GraphsFifoFragment extends BaseChartFragment {
             graphLastXValue += 1;
             seriesSize++;
             graphLastXValue += 0.25d;
+            updateCurrentIndex(seriesSize - 1);
         }
     }
 

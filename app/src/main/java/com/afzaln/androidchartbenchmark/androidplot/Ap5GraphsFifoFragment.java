@@ -119,6 +119,7 @@ public class Ap5GraphsFifoFragment extends BaseChartFragment {
             }
 
             series.addLast(null, points[i]);
+            updateCurrentIndex(series.size() - 1);
         }
     }
 

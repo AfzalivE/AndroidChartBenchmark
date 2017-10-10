@@ -107,6 +107,7 @@ public class Mp5GraphsFifoFragment extends BaseChartFragment {
                 }
                 lineChartView.notifyDataSetChanged();
                 lineChartView.moveViewToX(data.getEntryCount() - 121);
+                updateCurrentIndex(data.getEntryCount() - 1);
             }
             lineChartView.setVisibleXRangeMaximum(120);
         }

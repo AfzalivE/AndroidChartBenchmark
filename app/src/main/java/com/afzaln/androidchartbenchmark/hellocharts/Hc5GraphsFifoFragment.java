@@ -105,6 +105,7 @@ public class Hc5GraphsFifoFragment extends BaseChartFragment {
             }
             // add the new value in
             pointValues.add(new PointValue(pointValues.size() - 1, points[i]));
+            updateCurrentIndex(pointValues.size() - 1);
 
             for (int j = 0, jSize = chartViews.length; j < jSize; j++) {
                 LineChartView lineChartView = chartViews[j];

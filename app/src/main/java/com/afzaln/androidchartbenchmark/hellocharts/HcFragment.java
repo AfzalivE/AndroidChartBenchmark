@@ -90,6 +90,7 @@ public abstract class HcFragment extends BaseChartFragment {
             }
             // add the new value in
             pointValues.add(new PointValue(pointValues.size() - 1, points[i]));
+            updateCurrentIndex(pointValues.size() - 1);
             lineChartView.setLineChartData(lineChartData);
         }
     }

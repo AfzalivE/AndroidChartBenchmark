@@ -3,6 +3,7 @@ package com.afzaln.androidchartbenchmark.ui;
 import android.os.Bundle;
 import android.view.View;
 
+import com.afzaln.androidchartbenchmark.ChartBenchmarkApp;
 import com.afzaln.androidchartbenchmark.DataSimulator;
 import com.afzaln.androidchartbenchmark.PointsRunnable;
 
@@ -48,6 +49,12 @@ public abstract class BaseChartFragment extends BaseFragment {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public void updateCurrentIndex(int index) {
+        if (getActivity() != null) {
+            ChartBenchmarkApp.get(getActivity()).updateCurrentIndex(index);
+        }
     }
 
     protected abstract int getSetSize();

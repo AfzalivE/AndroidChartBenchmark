@@ -24,6 +24,7 @@ import timber.log.Timber;
 public class ChartBenchmarkApp extends Application {
 
     private List<StatHolder> stats;
+    private int currentIndex; // The shared index of the current value being drawn on the screen
 
     @Override
     public void onCreate() {
@@ -51,7 +52,7 @@ public class ChartBenchmarkApp extends Application {
         public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
             if (!stats.isEmpty()) {
                 StatHolder currentStats = stats.get(stats.size() - 1);
-                currentStats.add(currentFrameNS, droppedFrames);
+                currentStats.add(currentFrameNS, currentIndex, droppedFrames);
             }
         }
     };
@@ -62,6 +63,10 @@ public class ChartBenchmarkApp extends Application {
 
     public void addStatHolder(String name) {
         stats.add(new StatHolder(name));
+    }
+
+    public void updateCurrentIndex(int index) {
+         currentIndex = index;
     }
 
     public void finishStats() {

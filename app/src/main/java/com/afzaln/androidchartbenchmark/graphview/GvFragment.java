@@ -70,6 +70,7 @@ public abstract class GvFragment extends BaseChartFragment {
             graphLastXValue += 1;
             seriesSize++;
             graphLastXValue += 0.25d;
+            updateCurrentIndex(seriesSize - 1);
         }
     }
 

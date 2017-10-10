@@ -12,7 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.afzaln.androidchartbenchmark.scichart.Sci5GraphsFifoFragment;
+import com.afzaln.androidchartbenchmark.scichart.Sc5GraphsFifoFragment;
 import com.afzaln.androidchartbenchmark.ui.BaseChartFragment;
 
 import java.util.ArrayList;
@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentList.add(MpRtFifo3AxesFragment.class.getName());
 //        fragmentList.add(Mp5GraphsFifoFragment.class.getName());
 //
-//        fragmentList.add(SciRtFragment.class.getName());
-//        fragmentList.add(SciRt3AxesFragment.class.getName());
-//        fragmentList.add(SciRtFifoFragment.class.getName());
-//        fragmentList.add(SciRtFifo3AxesFragment.class.getName());
-        fragmentList.add(Sci5GraphsFifoFragment.class.getName());
+//        fragmentList.add(ScRtFragment.class.getName());
+//        fragmentList.add(ScRt3AxesFragment.class.getName());
+//        fragmentList.add(ScRtFifoFragment.class.getName());
+//        fragmentList.add(ScRtFifo3AxesFragment.class.getName());
+        fragmentList.add(Sc5GraphsFifoFragment.class.getName());
 //
 //        fragmentList.add(TcRtFragment.class.getName());
 //        fragmentList.add(TcRt3AxesFragment.class.getName());

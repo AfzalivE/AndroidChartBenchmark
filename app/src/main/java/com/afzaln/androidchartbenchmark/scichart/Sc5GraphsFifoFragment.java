@@ -23,7 +23,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by afzal on 2016-09-17.
  */
 
-public class Sci5GraphsFifoFragment extends BaseChartFragment {
+public class Sc5GraphsFifoFragment extends BaseChartFragment {
     private static final int NUM_SETS = 1;
     protected SciChartBuilder sciChartBuilder;
 

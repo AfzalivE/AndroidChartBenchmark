@@ -6,7 +6,7 @@ import com.afzaln.androidchartbenchmark.R;
  * Created by afzal on 2016-09-17.
  */
 
-public class SciRtFragment extends SciFragment {
+public class ScRtFifoFragment extends ScFragment {
     private static final int NUM_SETS = 1;
 
     @Override

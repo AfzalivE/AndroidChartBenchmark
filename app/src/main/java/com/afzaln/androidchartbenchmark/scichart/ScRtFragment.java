@@ -6,8 +6,8 @@ import com.afzaln.androidchartbenchmark.R;
  * Created by afzal on 2016-09-17.
  */
 
-public class SciRt3AxesFragment extends SciFragment {
-    private static final int NUM_SETS = 3;
+public class ScRtFragment extends ScFragment {
+    private static final int NUM_SETS = 1;
 
     @Override
     protected int getSetSize() {

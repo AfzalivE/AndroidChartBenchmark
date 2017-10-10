@@ -23,7 +23,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by afzal on 2017-08-17.
  */
 
-public abstract class SciFragment extends BaseChartFragment {
+public abstract class ScFragment extends BaseChartFragment {
 
     protected SciChartBuilder sciChartBuilder;
 

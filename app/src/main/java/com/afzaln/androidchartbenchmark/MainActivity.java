@@ -12,7 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.afzaln.androidchartbenchmark.androidplot.Ap5GraphsFifoFragment;
+import com.afzaln.androidchartbenchmark.scichart.Sci5GraphsFifoFragment;
 import com.afzaln.androidchartbenchmark.ui.BaseChartFragment;
 
 import java.util.ArrayList;
@@ -62,43 +62,43 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentList.add(ApRt3AxesFragment.class.getName());
 //        fragmentList.add(ApRtFifoFragment.class.getName());
 //        fragmentList.add(ApRtFifo3AxesFragment.class.getName());
-        fragmentList.add(Ap5GraphsFifoFragment.class.getName());
+//        fragmentList.add(Ap5GraphsFifoFragment.class.getName());
 //
 //        fragmentList.add(GvRtFragment.class.getName());
 //        fragmentList.add(GvRt3AxesFragment.class.getName());
 //        fragmentList.add(GvRtFifoFragment.class.getName());
 //        fragmentList.add(GvRtFifo3AxesFragment.class.getName());
-////        fragmentList.add(Gv5GraphsFifoFragment.class.getName());
-////
+//        fragmentList.add(Gv5GraphsFifoFragment.class.getName());
+//
 //        fragmentList.add(HcRtFragment.class.getName());
 //        fragmentList.add(HcRt3AxesFragment.class.getName());
 //        fragmentList.add(HcRtFifoFragment.class.getName());
 //        fragmentList.add(HcRtFifo3AxesFragment.class.getName());
-////        fragmentList.add(Hc5GraphsFifoFragment.class.getName());
+//        fragmentList.add(Hc5GraphsFifoFragment.class.getName());
 //
 //        fragmentList.add(MpRtFragment.class.getName());
 //        fragmentList.add(MpRt3AxesFragment.class.getName());
 //        fragmentList.add(MpRtFifoFragment.class.getName());
 //        fragmentList.add(MpRtFifo3AxesFragment.class.getName());
-////        fragmentList.add(Mp5GraphsFifoFragment.class.getName());
+//        fragmentList.add(Mp5GraphsFifoFragment.class.getName());
 //
 //        fragmentList.add(SciRtFragment.class.getName());
 //        fragmentList.add(SciRt3AxesFragment.class.getName());
 //        fragmentList.add(SciRtFifoFragment.class.getName());
 //        fragmentList.add(SciRtFifo3AxesFragment.class.getName());
-//        fragmentList.add(Sci5GraphsFifoFragment.class.getName());
+        fragmentList.add(Sci5GraphsFifoFragment.class.getName());
 //
-////        fragmentList.add(TcRtFragment.class.getName());
-////        fragmentList.add(TcRt3AxesFragment.class.getName());
-////        fragmentList.add(TcRtFifoFragment.class.getName());
-////        fragmentList.add(TcRtFifo3AxesFragment.class.getName());
-////        fragmentList.add(Tc5GraphsFifoFragment.class.getName());
+//        fragmentList.add(TcRtFragment.class.getName());
+//        fragmentList.add(TcRt3AxesFragment.class.getName());
+//        fragmentList.add(TcRtFifoFragment.class.getName());
+//        fragmentList.add(TcRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Tc5GraphsFifoFragment.class.getName());
 //
-////        fragmentList.add(WcRtFragment.class.getName());
-////        fragmentList.add(WcRt3AxesFragment.class.getName());
-////        fragmentList.add(WcRtFifoFragment.class.getName());
-////        fragmentList.add(WcRtFifo3AxesFragment.class.getName());
-////        fragmentList.add(Wc5GraphsFifoFragment.class.getName());
+//        fragmentList.add(WcRtFragment.class.getName());
+//        fragmentList.add(WcRt3AxesFragment.class.getName());
+//        fragmentList.add(WcRtFifoFragment.class.getName());
+//        fragmentList.add(WcRtFifo3AxesFragment.class.getName());
+//        fragmentList.add(Wc5GraphsFifoFragment.class.getName());
 
 //        showFragment(fragmentList.get(0));
         runFragmentList(fragmentList, rate);
